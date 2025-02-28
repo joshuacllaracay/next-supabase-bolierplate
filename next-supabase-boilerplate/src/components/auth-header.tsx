@@ -1,8 +1,11 @@
-import Link from 'next/link';
-import { ModeToggle } from './modes';
-import { UserModal } from './user-modal';
+"use client"
 
-export function Header() {
+import Link from 'next/link'
+import { ModeToggle } from './modes'
+import { UserDropdown } from './user-dropdown'
+import { User } from '@supabase/supabase-js'
+
+export function AuthHeader({ user }: { user: User | null }) {
   return (
     <header className="border-b">
       <div className="container flex h-16 items-center justify-between px-4">
@@ -13,10 +16,10 @@ export function Header() {
         </Link>
         
         <div className="flex items-center gap-4">
-          <UserModal />
+          <UserDropdown user={user} />
           <ModeToggle />
         </div>
       </div>
     </header>
-  );
+  )
 }
